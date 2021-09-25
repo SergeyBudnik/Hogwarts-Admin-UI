@@ -17,7 +17,7 @@
 
     <app-select-staff-member-control
       class="app-students-list-column-manager"
-      [items]="allStaffMembers"
+      [items]="getStaffMembers()"
       (onChange)="onFilterChange(undefined, $event, undefined)">
     </app-select-staff-member-control>
 
@@ -37,9 +37,6 @@
   <div class="app-list-content">
     <div *ngFor="let student of students" class="list-row-clickable" (click)="navigationService.students().login(student.login).information().go()">
       <div class="list-row-item app-students-list-column-validation">
-        <app-field-validation-sign
-          *ngIf="student.statusType === 'STUDYING' || student.statusType === 'STOPPED'" [valid]="isStudentFilled(student)">
-        </app-field-validation-sign>
       </div>
       <div class="list-row-item app-students-list-column-name">
         <div>{{student.person.name}}</div>
@@ -58,7 +55,7 @@
         </div>
       </div>
       <div class="list-row-item app-students-list-column-status">
-        <div app-student-status [studentStatusType]="student.statusType"></div>
+        <div app-student-status [studentStatusType]="getStatus(student.login)"></div>
       </div>
       <div class="list-row-item app-students-list-column-actions"></div>
     </div>

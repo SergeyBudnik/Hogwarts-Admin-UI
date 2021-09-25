@@ -11,10 +11,16 @@ export class StudentStatusHttp {
     readonly http: HttpClient
   ) {}
 
+  public getLatestStatuses(): Promise<Array<StudentStatus>> {
+    return this.http
+      .get<Array<StudentStatus>>(`${this.root}/latest`)
+      .toPromise();
+  }
+
   public getAllStatuses(): Promise<Array<StudentStatus>> {
     return this.http
-      .get<Array<StudentStatus>>(`${this.root}/all`)
-      .toPromise()
+      .get<Array<StudentStatus>>(`${this.root}/latest`)
+      .toPromise();
   }
 
   public changeStudentStatus(studentId: number, status: StudentStatusType, actionTime: number): Promise<any> {

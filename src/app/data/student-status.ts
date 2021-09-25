@@ -1,7 +1,7 @@
 export type StudentStatusType =
   'STUDYING' |
   'STOPPED' |
-  'LEFT'
+  'LEFT';
 
 export class StudentStatusTypeUtils {
   public static values: Array<StudentStatusType> =
@@ -22,7 +22,7 @@ export class StudentStatusTypeUtils {
 export class StudentStatus {
   public constructor(
     public id: number,
-    public studentId: number,
+    public studentLogin: string,
     public status: StudentStatusType,
     public creationTime: number,
     public actionTime: number
