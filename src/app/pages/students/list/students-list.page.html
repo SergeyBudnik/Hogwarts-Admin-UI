@@ -37,9 +37,6 @@
   <div class="app-list-content">
     <div *ngFor="let student of students" class="list-row-clickable" (click)="navigationService.students().login(student.login).information().go()">
       <div class="list-row-item app-students-list-column-validation">
-        <app-field-validation-sign
-          *ngIf="student.statusType === 'STUDYING' || student.statusType === 'STOPPED'" [valid]="isStudentFilled(student)">
-        </app-field-validation-sign>
       </div>
       <div class="list-row-item app-students-list-column-name">
         <div>{{student.person.name}}</div>

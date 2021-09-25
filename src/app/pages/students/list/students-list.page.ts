@@ -12,7 +12,7 @@ import {StudentsHttp} from '../../../http';
 })
 export class StudentsListPage {
   private allStaffMembers: Array<StaffMember> = [];
-  private allStudentsStatuses: Array<StudentStatus> = [];
+  private allStudentsStatusesTypes: Map<string, StudentStatusType> = new Map<string, StudentStatusType>();
   private allStudents: Array<Student> = [];
   private allGroups: Array<Group> = [];
 
@@ -45,7 +45,7 @@ export class StudentsListPage {
       this.staffMembersHttp.getAllStaffMembers(),
     ]).then(it => {
       this.allStudents = it[0].filter(student => student.person !== undefined);
-      this.allStudentsStatuses = it[1];
+      this.allStudentsStatusesTypes = this.studentsStatusesToMap(it[1]);
       this.allGroups = it[2];
       this.allStaffMembers = it[3];
 
@@ -72,9 +72,9 @@ export class StudentsListPage {
   }
 
   public getStatus(studentLogin: string): StudentStatusType {
-    const status = this.allStudentsStatuses.find(studentStatus => studentStatus.studentLogin === studentLogin);
+    const status = this.allStudentsStatusesTypes[studentLogin];
 
-    return status ? status.status : 'STUDYING';
+    return status ? status : 'STUDYING';
   }
 
   public getStatusItems(): Array<SelectItem> {
@@ -126,6 +126,17 @@ export class StudentsListPage {
           }
         }
       })
-      .sort((o1, o2) => StudentStatusTypeUtils.compare(o1.statusType, o2.statusType));
+      .sort((o1, o2) => StudentStatusTypeUtils.compare(
+        this.getStatus(o1.statusType),
+        this.getStatus(o2.statusType)
+      ));
+  }
+
+  private studentsStatusesToMap(studentsStatuses: Array<StudentStatus>): Map<string, StudentStatusType> {
+    const res = new Map<string, StudentStatusType>();
+
+    studentsStatuses.forEach(studentStatus => res[studentStatus.studentLogin] = studentStatus.status);
+
+    return res;
   }
 }
