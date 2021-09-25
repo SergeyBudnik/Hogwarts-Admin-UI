@@ -17,7 +17,7 @@
 
     <app-select-staff-member-control
       class="app-students-list-column-manager"
-      [items]="allStaffMembers"
+      [items]="getStaffMembers()"
       (onChange)="onFilterChange(undefined, $event, undefined)">
     </app-select-staff-member-control>
 
@@ -58,7 +58,7 @@
         </div>
       </div>
       <div class="list-row-item app-students-list-column-status">
-        <div app-student-status [studentStatusType]="student.statusType"></div>
+        <div app-student-status [studentStatusType]="getStatus(student.login)"></div>
       </div>
       <div class="list-row-item app-students-list-column-actions"></div>
     </div>

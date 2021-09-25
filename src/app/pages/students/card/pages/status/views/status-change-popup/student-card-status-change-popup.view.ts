@@ -14,7 +14,7 @@ export class StudentCardStatusChangePopupView {
 
   public modalVisible = true;
 
-  public studentId: number;
+  public studentLogin: string;
   public previousStatus: StudentStatusType;
   public newStatus: StudentStatusType;
   public hasAction: boolean;
@@ -46,9 +46,9 @@ export class StudentCardStatusChangePopupView {
     ).getTime();
   }
 
-  @Input('studentId') public set setStudentId(studentId: number) {
-    if (!!studentId) {
-      this.studentId = studentId;
+  @Input('studentId') public set setStudentLogin(studentLogin: string) {
+    if (!!studentLogin) {
+      this.studentLogin = studentLogin;
     }
   }
 
@@ -75,16 +75,16 @@ export class StudentCardStatusChangePopupView {
   public changeStudentStatus() {
     this.actionInProgress = true;
 
-    let totalActionTimeValue = this.actionDateTime + TimeUtils.getTimeMills(this.actionTime);
-
-    this.studentStatusHttp
-      .changeStudentStatus(this.studentId, this.newStatus, totalActionTimeValue)
-      .then(() => {
-        this.actionInProgress = false;
-        // ToDo: fix id
-        this.statusSaved.emit(new StudentStatus(null, this.studentId, this.newStatus, new Date().getTime(), totalActionTimeValue));
-        this.close();
-      });
+    // let totalActionTimeValue = this.actionDateTime + TimeUtils.getTimeMills(this.actionTime);
+    //
+    // this.studentStatusHttp
+    //   .changeStudentStatus(this.studentLogin, this.newStatus, totalActionTimeValue)
+    //   .then(() => {
+    //     this.actionInProgress = false;
+    //     // ToDo: fix id
+    //     this.statusSaved.emit(new StudentStatus(null, this.studentLogin, this.newStatus, new Date().getTime(), totalActionTimeValue));
+    //     this.close();
+    //   });
   }
 
   private hideModal(): void {
