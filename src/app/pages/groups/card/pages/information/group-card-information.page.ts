@@ -1,3 +1,5 @@
+/* tslint:disable:component-class-suffix */
+
 import {Component} from '@angular/core';
 import {StudentsService, LoginService, NavigationService, TranslationService} from '../../../../../service';
 import {ActivatedRoute} from '@angular/router';
@@ -13,7 +15,7 @@ import {DatesUtils} from '../../../../../utils/dates-utils';
   styleUrls: ['./group-card-information.page.less']
 })
 export class GroupCardInformationPage {
-  private currentTime = null;
+  private readonly currentTime = null;
 
   public showInactiveLessons = false;
 
@@ -23,8 +25,14 @@ export class GroupCardInformationPage {
 
   public loadingInProgress = true;
 
-  public staffMembers: Array<StaffMember> = [];
+  public teachers: Array<StaffMember> = [];
   public cabinets: Array<Cabinet> = [];
+
+  private static getActiveTeachers(allStaffMembers: Array<StaffMember>): Array<StaffMember> {
+    return allStaffMembers
+      .filter(it => it.active)
+      .filter(it => it.roles.teacher);
+  }
 
   public constructor(
     public translationService: TranslationService,
@@ -84,7 +92,7 @@ export class GroupCardInformationPage {
       this.group,
       groupLessonInfo.lesson,
       groupLessonInfo.index,
-      (groupLessonInfo) => this.onLessonSaved(groupLessonInfo.lesson, groupLessonInfo.index),
+      (groupLessonInfoToSave) => this.onLessonSaved(groupLessonInfoToSave.lesson, groupLessonInfoToSave.index),
       () => this.onLessonDeleted(groupLessonInfo.index)
     );
   }
@@ -120,10 +128,10 @@ export class GroupCardInformationPage {
   }
 
   private onLessonDeleted(lessonIndex: number) {
-    let lessons: Array<Lesson> = [];
+    const lessons: Array<Lesson> = [];
 
     for (let i = 0; i < this.group.lessons.length; i++) {
-      if (i != lessonIndex) {
+      if (i !== lessonIndex) {
         lessons.push(this.group.lessons[i]);
       }
     }
@@ -145,7 +153,7 @@ export class GroupCardInformationPage {
       this.group = it[0];
       this.students = it[1];
       this.cabinets = it[2];
-      this.staffMembers = it[3];
+      this.teachers = GroupCardInformationPage.getActiveTeachers(it[3]);
 
       this.lessons = this.getGroupLessons();
 
@@ -161,7 +169,7 @@ export class GroupCardInformationPage {
       this.group = new Group();
       this.students = [];
       this.cabinets = it[0];
-      this.staffMembers = it[1];
+      this.teachers = GroupCardInformationPage.getActiveTeachers(it[1]);
 
       this.loadingInProgress = false;
     });

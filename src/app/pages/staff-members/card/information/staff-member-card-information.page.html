@@ -52,6 +52,34 @@
 
         <br>
 
+        <app-form-input-control
+          [label]="'Активность'"
+          [valid]="true">
+          <app-select-yes-no-control
+            [value]="staffMember.active"
+            (onChange)="staffMember.active = $event">
+          </app-select-yes-no-control>
+        </app-form-input-control>
+
+        <br>
+
+        <div class="app-card-page-title">
+          Роли:
+        </div>
+
+        <br>
+
+        <app-form-input-control
+          [label]="'Учитель'"
+          [valid]="true">
+          <app-select-yes-no-control
+            [value]="staffMember.roles.teacher"
+            (onChange)="staffMember.roles.teacher = $event">
+          </app-select-yes-no-control>
+        </app-form-input-control>
+
+        <br>
+
         <div class="app-card-page-title">
           Подписки:
         </div>
