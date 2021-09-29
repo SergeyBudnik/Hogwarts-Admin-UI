@@ -32,22 +32,24 @@
     </div>
   </div>
 
-  <div *ngFor="let studentOnBoarding of studentOnBoardings" class="list-row-clickable"
-       (click)="navigationService.newStudents().card(studentOnBoarding.info.login).information().go()">
-    <div class="new-students-list-column-student-name list-row-item">
-      {{studentOnBoarding.info.person.name}}
-    </div>
+  <div class="app-list-content">
+    <div *ngFor="let studentOnBoarding of studentOnBoardings" class="list-row-clickable"
+         (click)="navigationService.newStudents().card(studentOnBoarding.info.login).information().go()">
+      <div class="new-students-list-column-student-name list-row-item">
+        {{studentOnBoarding.info.person.name}}
+      </div>
 
-    <div class="new-students-list-column-manager-name list-row-item">
-      {{getStaffMember(studentOnBoarding.info.managerLogin).person.name}}
-    </div>
+      <div class="new-students-list-column-manager-name list-row-item">
+        {{getStaffMember(studentOnBoarding.info.managerLogin).person.name}}
+      </div>
 
-    <div class="new-students-list-column-action-date list-row-item">
-      {{studentOnBoarding.actions[studentOnBoarding.actions.length - 1].info.actionTime | date: 'dd.MM.yyyy HH:mm'}}
-    </div>
+      <div class="new-students-list-column-action-date list-row-item">
+        {{studentOnBoarding.actions[studentOnBoarding.actions.length - 1].info.actionTime | date: 'dd.MM.yyyy HH:mm'}}
+      </div>
 
-    <div class="new-students-list-column-status list-row-item">
-      {{translationService.studentOnBoardingType().translate(studentOnBoarding.result.type)}}
+      <div class="new-students-list-column-status list-row-item">
+        {{translationService.studentOnBoardingType().translate(studentOnBoarding.result.type)}}
+      </div>
     </div>
   </div>
 </div>
