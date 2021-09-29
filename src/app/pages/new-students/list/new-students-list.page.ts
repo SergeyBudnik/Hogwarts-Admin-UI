@@ -34,7 +34,11 @@ export class NewStudentsListPage {
   }
 
   public isExpired(studentOnBoarding: ExistingStudentOnBoarding): boolean {
-    return studentOnBoarding.actions[studentOnBoarding.actions.length - 1].info.actionTime <= this.currentTime;
+    if (studentOnBoarding.result.type === 'PROGRESS') {
+      return this.getLatestAction(studentOnBoarding).info.actionTime <= this.currentTime;
+    } else {
+      return false;
+    }
   }
 
   public getAllStaffMembers(): Array<StaffMember> {
@@ -43,6 +47,18 @@ export class NewStudentsListPage {
 
   public getStaffMember(login: string): StaffMember {
     return this.allStaffMembers.find(it => it.login === login);
+  }
+
+  public getComment(studentOnBoarding: ExistingStudentOnBoarding): string {
+    if (studentOnBoarding.result.type === 'PROGRESS') {
+      return this.getLatestAction(studentOnBoarding).info.description;
+    } else {
+      return studentOnBoarding.result.comment;
+    }
+  }
+
+  public getLatestAction(studentOnBoarding: ExistingStudentOnBoarding) {
+    return studentOnBoarding.actions[studentOnBoarding.actions.length - 1];
   }
 
   public onFilterChange(
