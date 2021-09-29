@@ -40,6 +40,7 @@
 
   <div class="app-list-content">
     <div *ngFor="let studentOnBoarding of studentOnBoardings" class="list-row-clickable"
+         [class.new-student-list-row-status-expired]="isExpired(studentOnBoarding)"
          (click)="navigationService.newStudents().card(studentOnBoarding.info.login).information().go()">
       <div class="new-students-list-column-student-name list-row-item">
         {{studentOnBoarding.info.person.name}}
