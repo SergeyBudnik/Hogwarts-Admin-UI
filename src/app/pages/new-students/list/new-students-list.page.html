@@ -25,6 +25,12 @@
       (onChange)="onFilterChange(undefined, undefined, $event)">
     </app-select-student-on-boarding-type-control>
 
+    <div class="new-students-list-column-comment">
+      <div class="app-list-header-label">
+        Комментарий
+      </div>
+    </div>
+
     <div class="new-students-list-column-actions">
       <button class="app-button-primary pull-right" (click)="navigationService.newStudents().new().go()">
         Добавить
@@ -32,22 +38,28 @@
     </div>
   </div>
 
-  <div *ngFor="let studentOnBoarding of studentOnBoardings" class="list-row-clickable"
-       (click)="navigationService.newStudents().card(studentOnBoarding.info.login).information().go()">
-    <div class="new-students-list-column-student-name list-row-item">
-      {{studentOnBoarding.info.person.name}}
-    </div>
+  <div class="app-list-content">
+    <div *ngFor="let studentOnBoarding of studentOnBoardings" class="list-row-clickable"
+         (click)="navigationService.newStudents().card(studentOnBoarding.info.login).information().go()">
+      <div class="new-students-list-column-student-name list-row-item">
+        {{studentOnBoarding.info.person.name}}
+      </div>
 
-    <div class="new-students-list-column-manager-name list-row-item">
-      {{getStaffMember(studentOnBoarding.info.managerLogin).person.name}}
-    </div>
+      <div class="new-students-list-column-manager-name list-row-item">
+        {{getStaffMember(studentOnBoarding.info.managerLogin).person.name}}
+      </div>
 
-    <div class="new-students-list-column-action-date list-row-item">
-      {{studentOnBoarding.actions[studentOnBoarding.actions.length - 1].info.actionTime | date: 'dd.MM.yyyy HH:mm'}}
-    </div>
+      <div class="new-students-list-column-action-date list-row-item">
+        {{studentOnBoarding.actions[studentOnBoarding.actions.length - 1].info.actionTime | date: 'dd.MM.yyyy HH:mm'}}
+      </div>
 
-    <div class="new-students-list-column-status list-row-item">
-      {{translationService.studentOnBoardingType().translate(studentOnBoarding.result.type)}}
+      <div class="new-students-list-column-status list-row-item">
+        {{translationService.studentOnBoardingType().translate(studentOnBoarding.result.type)}}
+      </div>
+
+      <div class="new-students-list-column-comment list-row-item">
+        {{studentOnBoarding.result.comment}}
+      </div>
     </div>
   </div>
 </div>
