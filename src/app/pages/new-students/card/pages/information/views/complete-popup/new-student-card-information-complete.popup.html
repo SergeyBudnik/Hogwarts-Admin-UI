@@ -22,13 +22,16 @@
         <app-select-control
           [items]="getStatusItems()"
           [valueString]="result.type"
-          (onChangeString)="result.type = $event">
+          (onChangeString)="onTypeChanged($event)">
         </app-select-control>
       </app-form-input-control>
     </div>
 
     <div class="app-modal-footer">
-      <button class="app-button-primary app-modal-footer-buttons" (click)="save()">
+      <button
+        class="app-button-primary app-modal-footer-buttons"
+        [disabled]="!result.comment || !result.type"
+        (click)="save()">
         Готово
       </button>
 
