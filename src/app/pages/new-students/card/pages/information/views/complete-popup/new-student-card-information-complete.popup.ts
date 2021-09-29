@@ -33,6 +33,7 @@ export class NewStudentCardInformationCompletePopupManager {
   templateUrl: './new-student-card-information-complete.popup.html',
   styleUrls: ['./new-student-card-information-complete.popup.less']
 })
+// tslint:disable-next-line:component-class-suffix
 export class NewStudentCardInformationCompletePopup {
   public modalStatus = new ModalStatus(false);
 
@@ -65,6 +66,11 @@ export class NewStudentCardInformationCompletePopup {
         it
       )
     );
+  }
+
+  public onTypeChanged(type: StudentOnBoardingType) {
+    this.result.type = type;
+    this.result.comment = '';
   }
 
   public save() {

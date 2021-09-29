@@ -51,7 +51,7 @@
       </div>
 
       <div class="new-students-list-column-action-date list-row-item">
-        {{studentOnBoarding.actions[studentOnBoarding.actions.length - 1].info.actionTime | date: 'dd.MM.yyyy HH:mm'}}
+        {{getLatestAction(studentOnBoarding).info.actionTime | date: 'dd.MM.yyyy HH:mm'}}
       </div>
 
       <div class="new-students-list-column-status list-row-item">
@@ -59,7 +59,7 @@
       </div>
 
       <div class="new-students-list-column-comment list-row-item">
-        {{studentOnBoarding.result.comment}}
+        {{getComment(studentOnBoarding)}}
       </div>
     </div>
   </div>
