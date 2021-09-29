@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {LoginService, NavigationService, TranslationService,} from '../../../../../service';
+import {LoginService, NavigationService, TranslationService} from '../../../../../service';
 import {Group, StudentGroup, StaffMember, Student} from '../../../../../data';
 import {GroupsHttp, StaffMembersHttp, StudentsHttp} from '../../../../../http';
 import {GroupService} from '../../../../../service';
@@ -12,6 +12,7 @@ import {StudentCardInformationAssignGroupPopupManager} from './views';
   templateUrl: './student-card-information.page.html',
   styleUrls: ['./student-card-information.page.less']
 })
+// tslint:disable-next-line:component-class-suffix
 export class StudentCardInformationPage {
   public student: Student = Student.createNew();
 
@@ -51,10 +52,6 @@ export class StudentCardInformationPage {
     );
   }
 
-  public goToStatus() {
-    // this.navigationService.students().id(this.student.id).status().go();
-  }
-
   public onGroupSaved(studentGroupAndIndex: StudentGroupAndIndex) {
     if (studentGroupAndIndex.index == null) {
       this.student.studentGroups.push(studentGroupAndIndex.group);
@@ -64,10 +61,10 @@ export class StudentCardInformationPage {
   }
 
   public onGroupDeleted(studentGroupIndex: number) {
-    let studentGroups: Array<StudentGroup> = [];
+    const studentGroups: Array<StudentGroup> = [];
 
     for (let i = 0; i < this.student.studentGroups.length; i++) {
-      if (i != studentGroupIndex) {
+      if (i !== studentGroupIndex) {
         studentGroups.push(this.student.studentGroups[i]);
       }
     }
@@ -98,14 +95,6 @@ export class StudentCardInformationPage {
     );
   }
 
-  public hasAtLeastOneContact(): boolean {
-    return this.student.person.contacts.phones.length !== 0 || !!this.student.person.contacts.vkLinks;
-  }
-
-  public goToVk() {
-    // window.open(`https://vk.com/${this.student.vkLink}`, '_blank');
-  }
-
   private initStudent(studentLogin: string): void {
     Promise.all([
       this.studentsHttp.getAllStudents(),
@@ -114,12 +103,12 @@ export class StudentCardInformationPage {
     ]).then(it => {
       this.allStudents = it[0];
       this.allGroups = it[1];
-      this.allStaffMembers = it[2];
+      this.allStaffMembers = it[2].filter(it => it.active);
 
       this.student = this.allStudents.find(student => student.login === studentLogin);
 
       this.loadingInProgress = false;
-    })
+    });
   }
 
   private parseParams(onStudent: (studentLogin: string) => any) {

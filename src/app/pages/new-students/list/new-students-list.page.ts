@@ -1,14 +1,17 @@
 import {Component} from '@angular/core';
 import {StaffMembersHttp, StudentOnBoardingHttp} from '../../../http';
 import {LoginService, NavigationService, TranslationService} from '../../../service';
-import {StaffMember, ExistingStudentOnBoarding, StudentOnBoardingType} from '../../../data';
+import {ExistingStudentOnBoarding, StaffMember, StudentOnBoardingType} from '../../../data';
 
 @Component({
   selector: 'app-new-students-list-page',
   templateUrl: './new-students-list.page.html',
   styleUrls: ['./new-students-list.page.less']
 })
+// tslint:disable-next-line:component-class-suffix
 export class NewStudentsListPage {
+  private readonly currentTime = new Date().getTime();
+
   private allStudentOnBoardings: Array<ExistingStudentOnBoarding> = [];
   private allStaffMembers: Array<StaffMember> = [];
 
@@ -28,6 +31,10 @@ export class NewStudentsListPage {
     this.loginService.ifAuthenticated(() => {
       this.load();
     });
+  }
+
+  public isExpired(studentOnBoarding: ExistingStudentOnBoarding): boolean {
+    return studentOnBoarding.actions[studentOnBoarding.actions.length - 1].info.actionTime <= this.currentTime;
   }
 
   public getAllStaffMembers(): Array<StaffMember> {
