@@ -25,6 +25,12 @@
       (onChange)="onFilterChange(undefined, undefined, $event)">
     </app-select-student-on-boarding-type-control>
 
+    <div class="new-students-list-column-comment">
+      <div class="app-list-header-label">
+        Комментарий
+      </div>
+    </div>
+
     <div class="new-students-list-column-actions">
       <button class="app-button-primary pull-right" (click)="navigationService.newStudents().new().go()">
         Добавить
@@ -49,6 +55,10 @@
 
       <div class="new-students-list-column-status list-row-item">
         {{translationService.studentOnBoardingType().translate(studentOnBoarding.result.type)}}
+      </div>
+
+      <div class="new-students-list-column-comment list-row-item">
+        {{studentOnBoarding.result.comment}}
       </div>
     </div>
   </div>
