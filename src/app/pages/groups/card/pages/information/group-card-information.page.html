@@ -27,7 +27,7 @@
           [label]="'Старший преподаватель'"
           [valid]="!!group.bookName && group.bookName.indexOf('?') === -1">
           <app-select-staff-member-control
-            [items]="staffMembers"
+            [items]="teachers"
             [staffMemberLogin]="group.headTeacherLogin"
             (onChange)="group.headTeacherLogin = $event">
           </app-select-staff-member-control>
@@ -114,7 +114,7 @@
         <app-group-card-information-lesson-row
           *ngFor="let lesson of lessons"
           [groupLessonInfo]="lesson"
-          [staffMembers]="staffMembers"
+          [staffMembers]="teachers"
           (editLesson)="editLesson($event)">
         </app-group-card-information-lesson-row>
 
@@ -150,5 +150,5 @@
 
 <app-group-card-information-assign-lesson-popup
   [cabinets]="cabinets"
-  [staffMembers]="staffMembers">
+  [staffMembers]="teachers">
 </app-group-card-information-assign-lesson-popup>

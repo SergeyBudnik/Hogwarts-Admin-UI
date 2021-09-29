@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {LoginService, NavigationService, TranslationService,} from '../../../../../service';
+import {LoginService, NavigationService, TranslationService} from '../../../../../service';
 import {Group, StudentGroup, Student, StaffMember, ExistingStudentOnBoarding} from '../../../../../data';
 import {GroupsHttp, StaffMembersHttp, StudentOnBoardingHttp, StudentsHttp} from '../../../../../http';
 import {GroupService} from '../../../../../service';
@@ -10,6 +10,7 @@ import {GroupService} from '../../../../../service';
   templateUrl: './student-card-new.page.html',
   styleUrls: ['./student-card-new.page.less']
 })
+// tslint:disable-next-line:component-class-suffix
 export class StudentCardNewPage {
   public student: Student = Student.createNew();
 
@@ -55,7 +56,7 @@ export class StudentCardNewPage {
     let studentOnBoardingLoginPromise: Promise<ExistingStudentOnBoarding>;
 
     if (!!studentOnBoardingLogin) {
-      studentOnBoardingLoginPromise = this.studentOnBoardingHttp.getByLogin(studentOnBoardingLogin)
+      studentOnBoardingLoginPromise = this.studentOnBoardingHttp.getByLogin(studentOnBoardingLogin);
     } else {
       new Promise((resolve) => {
         resolve(null);
@@ -68,7 +69,7 @@ export class StudentCardNewPage {
       studentOnBoardingLoginPromise
     ]).then(it => {
       this.allGroups = it[0];
-      this.allStaffMembers = it[1];
+      this.allStaffMembers = it[1].filter(it => it.active);
 
       const studentOnBoarding = it[2] as ExistingStudentOnBoarding;
 
