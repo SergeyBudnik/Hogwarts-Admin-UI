@@ -1,0 +1,38 @@
+<div class="app-student-card-management-month">
+  <div class="app-student-card-management-month-title">
+    {{month.name}}
+  </div>
+
+  <br>
+
+  <div class="app-student-card-management-month-items">
+    <div class="app-student-card-management-month-calendar">
+      <div *ngFor="let week of month.weeks" class="app-student-card-management-week">
+        <app-student-card-management-calendar-day
+          *ngFor="let day of week.days"
+          [day]="day"
+          (onLessonInstanceClick)="onLessonInstanceClick($event)">
+        </app-student-card-management-calendar-day>
+      </div>
+    </div>
+
+    <div class="app-student-card-management-month-payments">
+      <div *ngIf="month.payments.length === 0" class="app-student-card-management-month-payments-empty">
+        В этом месяце оплаты не было
+      </div>
+
+      <app-student-card-payment-row
+        *ngFor="let payment of month.payments"
+        [payment]="payment"
+        [staffMembers]="month.staffMembers">
+      </app-student-card-payment-row>
+
+      <button class="app-button-secondary" style="width: fit-content; margin-top: 6px;"
+              (click)="onRequestAddPayment()">
+        Добавить оплату
+      </button>
+    </div>
+  </div>
+</div>
+
+<br>

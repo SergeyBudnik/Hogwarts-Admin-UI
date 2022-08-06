@@ -5,41 +5,40 @@
         {{payment.info.time | date: 'dd.MM.yyyy HH:mm'}}
       </div>
     </div>
+
     <div class="payments-date-column">
       <div class="app-card-page-text">
         {{payment.info.amount}}Р
       </div>
     </div>
+
     <div class="payments-teachers-column">
       <div class="app-card-page-link" (click)="navigationService.staffMembers().id(getStaffMember().login).information().go()">
         {{getStaffMember().person.name}}
       </div>
     </div>
-    <div class="payments-teachers-column">
-      <div class="app-card-page-text">
-        {{payment.processed ? 'Учтено' : 'Не учтено'}}
-      </div>
+
+    <div class="payments-actions-column">
+      <i
+        *ngIf="payment.processed"
+        class="fa fa-check payments-action-processed"
+        aria-hidden="true"
+        (click)="processPayment(false)">
+      </i>
+
+      <i
+        *ngIf="!payment.processed"
+        class="fa fa-clock-o payments-action-unprocessed"
+        aria-hidden="true"
+        (click)="processPayment(true)">
+      </i>
+
+      <i
+        class="fa fa-trash-o payments-action-delete"
+        aria-hidden="true"
+        (click)="deletePayment()">
+      </i>
+
     </div>
-  </div>
-  <div class="app-student-card-payment-row-actions">
-    <button
-      class="app-button-danger app-student-card-payment-row-actions-delete"
-      (click)="deletePayment()">
-      Удалить
-    </button>
-
-    <button
-      *ngIf="payment.processed"
-      class="app-button-secondary app-student-card-payment-row-actions-process"
-      (click)="processPayment(false)">
-      Не учтено
-    </button>
-
-    <button
-      *ngIf="!payment.processed"
-      class="app-button-primary app-student-card-payment-row-actions-process"
-      (click)="processPayment(true)">
-      Учтено
-    </button>
   </div>
 </div>

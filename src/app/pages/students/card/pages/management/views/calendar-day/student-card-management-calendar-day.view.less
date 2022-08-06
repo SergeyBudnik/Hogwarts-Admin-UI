@@ -1,0 +1,77 @@
+@import "~styles/index";
+
+.app-student-card-management-date-cell {
+  display: flex;
+  flex-direction: column;
+
+  width: 48px;
+  height: 48px;
+
+  margin-right: 3px;
+  margin-bottom: 3px;
+
+  border-radius: 6px;
+
+  text-align: center;
+
+  background: @color-alt_basic_base;
+}
+
+.app-student-card-management-date-name {
+  .app-font-regular;
+
+  line-height: 24px;
+
+  color: @color-fill_text_basic;
+  font-size: 14px;
+}
+
+.app-student-card-management-date-statuses {
+  display: flex;
+  flex-direction: row;
+
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.app-student-card-management-date-status {
+  width: 21px;
+  height: 21px;
+
+  border-radius: 3px;
+
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+}
+
+.app-student-card-management-date-status-visit {
+  .app-student-card-management-date-status;
+
+  background: @color-fill_text_basic_positive;
+}
+
+.app-student-card-management-date-status-valid-skip {
+  .app-student-card-management-date-status;
+
+  background: @color-fill_text_basic_warning;
+}
+
+.app-student-card-management-date-status-invalid-skip {
+  .app-student-card-management-date-status;
+
+  background: @color-fill_text_basic_negative;
+}
+
+.app-student-card-management-date-status-empty {
+  .app-student-card-management-date-status;
+
+  background: @color-fill_basic_strong;
+}
+
+.app-student-card-management-date-status-future {
+  .app-student-card-management-date-status;
+
+  background: @color-fill_basic_strong;
+}
