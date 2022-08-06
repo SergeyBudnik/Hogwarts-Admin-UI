@@ -1,0 +1,12 @@
+<div class="app-card-page-title">
+  Календарь
+</div>
+
+<br>
+
+<app-student-card-management-calendar-month
+  *ngFor="let month of months"
+  [month]="month"
+  (onRequestAddPayment)="onRequestAddPayment()"
+  (onLessonInstanceClick)="onLessonInstanceClick($event)">
+</app-student-card-management-calendar-month>

@@ -15,17 +15,10 @@
   </app-menu-item>
 
   <app-menu-item
-    [isActive]="currentTab === 'ATTENDANCE'"
-    [title]="'Посещаемость'"
-    [icon]="'fa-users'"
-    (click)="navigationService.students().login(studentLogin).attendance().go()">
-  </app-menu-item>
-
-  <app-menu-item
-    [isActive]="currentTab === 'PAYMENT'"
-    [title]="'Оплата'"
+    [isActive]="currentTab === 'MANAGEMENT'"
+    [title]="'Управление'"
     [icon]="'fa-money'"
-    (click)="navigationService.students().login(studentLogin).payment().go()">
+    (click)="navigationService.students().login(studentLogin).management().go()">
   </app-menu-item>
 
 </ng-container>

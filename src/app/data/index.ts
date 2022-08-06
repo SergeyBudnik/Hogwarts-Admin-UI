@@ -6,6 +6,7 @@ export * from './education-level';
 export * from './group';
 export * from './group-type';
 export * from './lesson';
+export * from './month';
 export * from './person';
 export * from './staff-member';
 export * from './student';

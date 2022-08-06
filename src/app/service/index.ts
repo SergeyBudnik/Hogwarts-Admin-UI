@@ -1,3 +1,5 @@
+export * from './lessons/lessons-instance.service';
+
 export * from './navigation/navigation.service';
 export * from './translation/translation.service';
 

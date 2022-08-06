@@ -1,0 +1,64 @@
+<app-modal-template [modalStatus]="modalStatus">
+  <div class="app-modal-content" *ngIf="!!newStudentPayment">
+    <div class="app-modal-title">
+      Изменение статуса занятия
+    </div>
+
+    <div class="app-modal-body">
+      <div class="app-student-card-management-modify-attendance-info">
+        <app-form-input-control
+          class="app-student-card-management-modify-attendance-info-date"
+          [label]="'Дата занятия'"
+          [valid]="true">
+          <app-date-control
+            [value]="data.lessonInstance.date"
+            [editable]="false">
+          </app-date-control>
+        </app-form-input-control>
+
+        <app-form-input-control
+          class="app-student-card-management-modify-attendance-info-start-time"
+          [label]="'Начало занятия'"
+          [valid]="true">
+          <app-select-time-control
+            [value]="data.lessonInstance.lesson.startTime"
+            [editable]="false">
+          </app-select-time-control>
+        </app-form-input-control>
+
+        <app-form-input-control
+          class="app-student-card-management-modify-attendance-info-finish-time"
+          [label]="'Окончание занятия'"
+          [valid]="true">
+          <app-select-time-control
+            [value]="data.lessonInstance.lesson.finishTime"
+            [editable]="false">
+          </app-select-time-control>
+        </app-form-input-control>
+      </div>
+
+      <br>
+
+      <app-form-input-control
+        [label]="'Группа'"
+        [valid]="true">
+        <app-text-control
+          [value]="name"
+          [editable]="false">
+        </app-text-control>
+      </app-form-input-control>
+
+      <br>
+    </div>
+
+    <div class="app-modal-footer">
+      <button class="app-button-primary app-modal-footer-buttons">
+        Сохранить
+      </button>
+
+      <button class="app-button-secondary app-modal-footer-buttons" (click)="cancel()">
+        Отмена
+      </button>
+    </div>
+  </div>
+</app-modal-template>

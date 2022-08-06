@@ -38,6 +38,7 @@ import {ModalTemplateComponent} from './templates/modal/modal.template';
 import {StudentStatusComponent} from './parts/student/student-status/student-status.component';
 import {GroupIconComponent} from './parts/group/group-icon/group-icon.component';
 import {WeekSelectorComponent} from './parts/week-selector/week-selector.component';
+import {StudentCardManagementCalendarMonthView} from './pages';
 
 const appRoutes: Routes = [
   { path: 'login', component: Pages.LoginPageComponent },
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
   { path: 'students/:login/status', component: Pages.StudentCardStatusPage },
   { path: 'students/:login/attendance', component: Pages.StudentCardAttendancePage },
   { path: 'students/:login/payment', component: Pages.StudentCardPaymentPage },
+  { path: 'students/:login/management', component: Pages.StudentCardManagementPage },
 
   { path: 'cabinets', component: Pages.CabinetsListPage },
   { path: 'cabinets/:id/information', component: Pages.CabinetInformationPage },
@@ -85,10 +87,29 @@ const appRoutes: Routes = [
      */
 
     Pages.StudentCardNewPage,
-    Pages.StudentCardInformationPage, Pages.StudentCardInformationGroupRowView, Pages.StudentCardInformationAssignGroupPopupView,
-    Pages.StudentCardStatusPage, Pages.StudentCardStatusChangePopupView,
-    Pages.StudentCardAttendancePage, Pages.StudentCardAttendanceRowView,
-    Pages.StudentCardPaymentPage, Pages.StudentCardPaymentRowView, Pages.StudentCardPaymentAddPopupView,
+
+    Pages.StudentCardInformationPage,
+    Pages.StudentCardInformationGroupRowView,
+    Pages.StudentCardInformationAssignGroupPopupView,
+
+    Pages.StudentCardStatusPage,
+    Pages.StudentCardStatusChangePopupView,
+
+    Pages.StudentCardAttendancePage,
+    Pages.StudentCardAttendanceRowView,
+
+    Pages.StudentCardPaymentPage,
+    Pages.StudentCardPaymentRowView,
+    Pages.StudentCardPaymentAddPopupView,
+
+    Pages.StudentCardManagementPage,
+    Pages.StudentCardManagementAddPaymentView,
+    Pages.StudentCardManagementCalendarView,
+    Pages.StudentCardManagementCalendarDayView,
+    Pages.StudentCardManagementCalendarMonthView,
+    Pages.StudentCardManagementInfoView,
+    Pages.StudentCardManagementModifyAttendanceView,
+
     Pages.StudentMenuComponent,
     Pages.StudentsListPage,
 
@@ -173,7 +194,7 @@ const appRoutes: Routes = [
     Controls.FormTextControl,
     Controls.FormDateAndTimeControl,
 
-    WeekSelectorComponent
+    WeekSelectorComponent, StudentCardManagementCalendarMonthView
   ],
   imports: [
     TagInputModule,
@@ -204,6 +225,7 @@ const appRoutes: Routes = [
       useValue: {}
     },
 
+    Services.LessonsInstanceService,
     Services.NavigationService,
     Services.TranslationService,
     Services.LoginService,

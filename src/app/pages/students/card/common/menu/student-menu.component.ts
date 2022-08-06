@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {NavigationService} from '../../../../../service';
 
-type Tab = 'INFORMATION' | 'STATUS' | 'ATTENDANCE' | 'PAYMENT';
+type Tab = 'INFORMATION' | 'STATUS' | 'ATTENDANCE' | 'PAYMENT' | 'MANAGEMENT';
 
 @Component({
   selector: '[app-student-menu]',

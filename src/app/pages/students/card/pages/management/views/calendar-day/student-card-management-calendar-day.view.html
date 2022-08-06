@@ -1,0 +1,16 @@
+<div class="app-student-card-management-date-cell">
+  <div class="app-student-card-management-date-name">
+    {{day === null ? '' : day.name}}
+  </div>
+
+  <div *ngIf="day !== null" class="app-student-card-management-date-statuses">
+    <div
+      *ngFor="let lessonInstance of day.lessons"
+      (click)="onLessonInstanceClick(lessonInstance)"
+      [class.app-student-card-management-date-status-visit]="lessonInstance.attendanceType === 'VISITED'"
+      [class.app-student-card-management-date-status-valid-skip]="lessonInstance.attendanceType === 'VALID_SKIP'"
+      [class.app-student-card-management-date-status-invalid-skip]="lessonInstance.attendanceType === 'INVALID_SKIP'"
+      [class.app-student-card-management-date-status-empty]="lessonInstance.attendanceType === null">
+    </div>
+  </div>
+</div>
