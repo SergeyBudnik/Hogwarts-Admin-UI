@@ -1,0 +1,28 @@
+<div class="app-card-page-title">
+  Зарплата
+</div>
+
+<div style="display: flex; flex-direction: column; width: 100%;">
+  <div
+    *ngFor="let daysGroup of days"
+    style="display: flex; flex-direction: row; width: 100%; margin-top: 18px;">
+
+    <app-staff-member-week-management-salary-day-view
+      *ngIf="daysGroup.length >= 1"
+      [data]="getDayData(daysGroup[0])"
+      style="width: 32%; margin-right: 2%">
+    </app-staff-member-week-management-salary-day-view>
+
+    <app-staff-member-week-management-salary-day-view
+      *ngIf="daysGroup.length >= 2"
+      [data]="getDayData(daysGroup[1])"
+      style="width: 32%; margin-right: 2%">
+    </app-staff-member-week-management-salary-day-view>
+
+    <app-staff-member-week-management-salary-day-view
+      *ngIf="daysGroup.length >= 3"
+      [data]="getDayData(daysGroup[2])"
+      style="width: 32%;">
+    </app-staff-member-week-management-salary-day-view>
+  </div>
+</div>

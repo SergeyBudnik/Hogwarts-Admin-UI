@@ -9,6 +9,8 @@ export * from './lesson';
 export * from './month';
 export * from './person';
 export * from './staff-member';
+export * from './staff-member-action';
+export * from './staff-member-week-status';
 export * from './student';
 export * from './student-attendance';
 export * from './student-group';

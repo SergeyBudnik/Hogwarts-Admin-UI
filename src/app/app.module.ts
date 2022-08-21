@@ -63,6 +63,8 @@ const appRoutes: Routes = [
   { path: 'staff-members', component: Pages.StaffMembersListPageComponent },
   { path: 'staff-members/:login/information', component: Pages.StaffMemberCardInformationPageComponent },
   { path: 'staff-members/:login/timetable', component: Pages.StaffMemberCardTimetablePageComponent },
+  { path: 'staff-members/:login/management', component: Pages.StaffMemberCardManagementPageComponent },
+  { path: 'staff-members/:login/management/:year/:month/:weekIndex', component: Pages.StaffMemberWeekManagementPageComponent },
 
   { path: 'new-students', component: Pages.NewStudentsListPage },
   { path: 'new-students/:new', component: Pages.NewStudentCardNewPage },
@@ -137,9 +139,22 @@ const appRoutes: Routes = [
      */
 
     Pages.StaffMembersListPageComponent,
+
     Pages.StaffMemberCardInformationPageComponent,
+
     Pages.StaffMemberCardTimetablePageComponent,
+
+    Pages.StaffMemberCardManagementPageComponent,
+      Pages.StaffMemberCardManagementMonthViewComponent,
+
     Pages.StaffMemberCardMenuComponent,
+
+    Pages.StaffMemberWeekManagementPageComponent,
+      Pages.StaffMemberWeekManagementPaymentsViewComponent,
+      Pages.StaffMemberWeekManagementSalaryViewComponent,
+      Pages.StaffMemberWeekManagementSalaryDayViewComponent,
+      Pages.StaffMemberWeekManagementSalaryDayActionViewComponent,
+      Pages.StaffMemberWeekManagementTotalViewComponent,
 
     /**
      * Pages: New student
@@ -242,7 +257,9 @@ const appRoutes: Routes = [
     Https.StudentOnBoardingHttp,
     Https.StudentPaymentHttp,
     Https.StudentStatusHttp,
-    Https.StaffMembersHttp
+    Https.StaffMembersHttp,
+    Https.StaffMembersActionsHttp,
+    Https.StaffMembersWeekStatusesHttp
   ],
   bootstrap: [
     AppComponent

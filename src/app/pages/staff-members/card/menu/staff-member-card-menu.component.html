@@ -14,4 +14,11 @@
     (click)="navigationService.staffMembers().id(staffMemberLogin).timetable().go()">
   </app-menu-item>
 
+  <app-menu-item
+    [isActive]="currentTab === 'MANAGEMENT'"
+    [title]="'Управление'"
+    [icon]="'fa-clock-o'"
+    (click)="navigationService.staffMembers().id(staffMemberLogin).management().go()">
+  </app-menu-item>
+
 </ng-container>

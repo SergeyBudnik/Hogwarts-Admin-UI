@@ -5,7 +5,7 @@ import {HttpConfig} from './http-config';
 
 @Injectable()
 export class StaffMembersHttp {
-  private root = `${HttpConfig.getBackendRoot()}/admin/staff/member/management`;
+  private root = `${HttpConfig.getBackendRoot()}/admin/staff-members/management`;
 
   public constructor(
     readonly http: HttpClient

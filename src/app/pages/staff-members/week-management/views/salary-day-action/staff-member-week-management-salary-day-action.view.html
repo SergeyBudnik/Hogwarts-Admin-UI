@@ -1,0 +1,49 @@
+<div class="app-staff-member-week-management-salary-day-action">
+  <div class="app-staff-member-week-management-salary-day-action-time">
+    {{data.action.startTime | date: 'HH:mm'}}
+    -
+    {{data.action.finishTime | date: 'HH:mm'}}
+  </div>
+
+  <div class="app-staff-member-week-management-salary-day-action-type">
+    <ng-container *ngIf="data.action.type === 'ROAD'">
+      Дорога
+    </ng-container>
+    <ng-container *ngIf="data.action.type === 'LESSON_CABINET'">
+      Занятие
+    </ng-container>
+    <ng-container *ngIf="data.action.type === 'LESSON_ONLINE'">
+      Онлайн занятие
+    </ng-container>
+  </div>
+
+  <div class="app-staff-member-week-management-salary-day-action-price">
+    {{data.action.price}} Р
+  </div>
+
+  <div class="app-staff-member-week-management-salary-day-action-status">
+    <span
+      *ngIf="data.action.status === 'FINISHED'"
+      class="app-staff-member-week-management-salary-day-action-status-finished">
+      <i class="fa fa-check-circle" aria-hidden="true"></i>
+    </span>
+
+    <span
+      *ngIf="data.action.status === 'CANCELED'"
+      class="app-staff-member-week-management-salary-day-action-status-canceled">
+      <i class="fa fa-remove" aria-hidden="true"></i>
+    </span>
+
+    <span
+      *ngIf="data.action.status === 'NOT_FILLED'"
+      class="app-staff-member-week-management-salary-day-action-status-not-filled">
+      <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+    </span>
+
+    <span
+      *ngIf="data.action.status === 'FUTURE'"
+      class="app-staff-member-week-management-salary-day-action-status-future">
+      <i class="fa fa-clock-o" aria-hidden="true"></i>
+    </span>
+  </div>
+</div>
