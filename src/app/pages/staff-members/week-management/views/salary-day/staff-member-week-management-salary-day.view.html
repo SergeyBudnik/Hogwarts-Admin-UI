@@ -1,0 +1,10 @@
+<div class="app-staff-member-week-management-salary-day-name">
+  {{dayName}}
+</div>
+
+<br>
+
+<app-staff-member-week-management-salary-day-action-view
+  *ngFor="let action of data.actions"
+  [data]="getActionData(action)">
+</app-staff-member-week-management-salary-day-action-view>

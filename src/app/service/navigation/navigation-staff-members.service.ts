@@ -1,5 +1,7 @@
 import {NavigationExecutor} from './common';
 import {Router} from '@angular/router';
+import {Month} from '../../data';
+import {DatesUtils} from '../../utils/dates-utils';
 
 export class NavigationStaffMembersService {
   constructor(private router: Router) {}
@@ -21,10 +23,32 @@ export class NavigationStaffMemberService {
   constructor(private router: Router, private login: string) {}
 
   public information(): NavigationExecutor {
-    return new NavigationExecutor(this.router, `staff-members/${this.login}/information`);
+    return new NavigationExecutor(
+      this.router,
+      `staff-members/${this.login}/information`
+    );
   }
 
   public timetable(): NavigationExecutor {
-    return new NavigationExecutor(this.router, `staff-members/${this.login}/timetable`);
+    return new NavigationExecutor(
+      this.router,
+      `staff-members/${this.login}/timetable`
+    );
+  }
+
+  public management(): NavigationExecutor {
+    return new NavigationExecutor(
+      this.router,
+      `staff-members/${this.login}/management`
+    );
+  }
+
+  public managementWeek(year: number, month: Month, weekIndex: number): NavigationExecutor {
+    const monthIndex = DatesUtils.monthIndex(month);
+
+    return new NavigationExecutor(
+      this.router,
+      `staff-members/${this.login}/management/${year}/${monthIndex}/${weekIndex}`
+    );
   }
 }

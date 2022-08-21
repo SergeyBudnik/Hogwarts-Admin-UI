@@ -1,0 +1,27 @@
+<div class="app-card-page">
+  <app-header></app-header>
+
+  <div class="app-card-page-elements">
+    <div
+      class="app-card-page-left-menu"
+      app-staff-member-menu
+      [isNew]="false"
+      [staffMemberLogin]="login"
+      [currentTab]="'MANAGEMENT'"></div>
+
+    <div class="app-card-page-content-scrollable">
+      <div style="display: flex; flex-direction: column; width: 100%">
+        <div
+          class="app-staff-member-card-management-month-row"
+          *ngFor="let monthGroup of months">
+
+          <app-staff-member-management-month-view
+            *ngFor="let month of monthGroup"
+            style="width: 32%; margin-right: 2%;"
+            [data]="month">
+          </app-staff-member-management-month-view>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

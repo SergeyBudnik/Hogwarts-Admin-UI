@@ -1,0 +1,11 @@
+<div class="app-card-page-title">
+  Сдали деньги
+</div>
+
+<br>
+
+<app-student-card-payment-row
+  *ngFor="let payment of data.payments"
+  [payment]="payment"
+  [staffMembers]="data.staffMembers">
+</app-student-card-payment-row>

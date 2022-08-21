@@ -1,0 +1,28 @@
+<div class="app-card-page">
+  <app-header></app-header>
+
+  <div class="app-card-page-elements">
+    <div class="app-card-page-left-menu"></div>
+
+    <div class="app-card-page-content-scrollable">
+      <app-staff-member-week-management-total-view
+        [data]="totalData"
+        (onFinishWeek)="finishWeek()">
+      </app-staff-member-week-management-total-view>
+
+      <br>
+
+      <app-staff-member-week-management-salary-view
+        [data]="salaryData">
+      </app-staff-member-week-management-salary-view>
+
+      <br>
+
+      <app-staff-member-week-management-payments-view
+        [data]="paymentsData">
+      </app-staff-member-week-management-payments-view>
+    </div>
+
+    <div class="app-card-page-right-menu"></div>
+  </div>
+</div>

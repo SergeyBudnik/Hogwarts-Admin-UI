@@ -1,0 +1,41 @@
+<div class="app-card-page-title">
+  Итог
+</div>
+
+<br>
+
+<div>
+  <button class="app-button-primary" (click)="finishWeek()">
+    Закрыть неделю
+  </button>
+</div>
+
+<br>
+
+<app-form-input-control [label]="'Зарплата'" [valid]="true">
+  <app-text-control
+    [value]="'' + totalSalary"
+    [placeholder]="''"
+    [editable]="false">
+  </app-text-control>
+</app-form-input-control>
+
+<br>
+
+<app-form-input-control [label]="'Сдали денег'" [valid]="true">
+  <app-text-control
+    [value]="'' + totalPayments"
+    [placeholder]="''"
+    [editable]="false">
+  </app-text-control>
+</app-form-input-control>
+
+<br>
+
+<app-form-input-control [label]="'Итог'" [valid]="true">
+  <app-text-control
+    [value]="'' + total"
+    [placeholder]="''"
+    [editable]="false">
+  </app-text-control>
+</app-form-input-control>
