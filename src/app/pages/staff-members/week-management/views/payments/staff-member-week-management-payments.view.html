@@ -2,10 +2,15 @@
   Сдали деньги
 </div>
 
-<br>
+<div *ngIf="paymentsData.length === 0" class="payments-empty">
+  За эту неделю никто не сдал денег :(
+</div>
 
-<app-student-card-payment-row
-  *ngFor="let payment of data.payments"
-  [payment]="payment"
-  [staffMembers]="data.staffMembers">
-</app-student-card-payment-row>
+<div class="payments-container">
+  <app-student-payment
+    *ngFor="let paymentData of paymentsData"
+    [data]="paymentData"
+    (onPaymentDeleted)="onPaymentDeleted(paymentData)"
+    (onPaymentProcessed)="onPaymentProcessed(paymentData, $event)">
+  </app-student-payment>
+</div>

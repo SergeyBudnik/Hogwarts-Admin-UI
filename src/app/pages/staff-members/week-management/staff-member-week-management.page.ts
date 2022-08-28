@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
 import {StaffMemberWeekManagementPaymentsData} from './views/payments/staff-member-week-management-payments.data';
-import {StaffMembersActionsHttp, StaffMembersHttp, StaffMembersWeekStatusesHttp, StudentPaymentHttp} from '../../../http';
+import {StaffMembersActionsHttp, StaffMembersHttp, StaffMembersWeekStatusesHttp, StudentPaymentHttp, StudentsHttp} from '../../../http';
 import {LoginService} from '../../../service';
 import {ActivatedRoute} from '@angular/router';
 import {DatesUtils} from '../../../utils/dates-utils';
 import {StaffMemberWeekManagementTotalViewData} from './views/total/staff-member-week-management-total.view.data';
-import {Month} from '../../../data';
-import {StaffMemberWeekManagementSalaryViewData} from './views/salary/staff-member-week-management-salary.view.data';
+import {DayOfWeek, ExistingStudentPayment, Month, StaffMemberAction, StaffMemberWeekStatusType, Student} from '../../../data';
+import {StaffMemberWeekManagementActionsViewData} from './views/actions/staff-member-week-management-actions.view.data';
 
 @Component({
   selector: 'app-staff-member-week-management-page',
@@ -14,18 +14,21 @@ import {StaffMemberWeekManagementSalaryViewData} from './views/salary/staff-memb
   styleUrls: ['./staff-member-week-management.page.less']
 })
 export class StaffMemberWeekManagementPageComponent {
+  public loadingInProgress = true;
+
   public totalData: StaffMemberWeekManagementTotalViewData = {
     payments: [],
-    actions: new Map()
+    actions: new Map(),
+    statusType: 'OPENED'
   }
 
-  public salaryData: StaffMemberWeekManagementSalaryViewData = {
+  public actionsViewData: StaffMemberWeekManagementActionsViewData = {
     actions: new Map()
   }
 
   public paymentsData: StaffMemberWeekManagementPaymentsData = {
     payments: [],
-    staffMembers: [],
+    students: [],
   };
 
   private login: string = '';
@@ -34,14 +37,19 @@ export class StaffMemberWeekManagementPageComponent {
   private weekIndex: number = 0;
   private month: Month = 'JAN';
   private year: number = 0;
+  private actions: Map<DayOfWeek, Array<StaffMemberAction>> = new Map();
+  private payments: Array<ExistingStudentPayment> = [];
+  private students: Array<Student> = [];
+  private statusType: StaffMemberWeekStatusType = 'OPENED';
 
   public constructor(
     private loginService: LoginService,
     private route: ActivatedRoute,
+    private studentsHttp: StudentsHttp,
     private studentPaymentsHttp: StudentPaymentHttp,
     private staffMembersHttp: StaffMembersHttp,
     private staffMembersWeeksStatusesHttp: StaffMembersWeekStatusesHttp,
-    private staffMembersActionsHttp: StaffMembersActionsHttp
+    private staffMembersActionsHttp: StaffMembersActionsHttp,
   ) {
     this.loginService.ifAuthenticated(() => {
       this.route.paramMap.subscribe(params => {
@@ -58,47 +66,39 @@ export class StaffMemberWeekManagementPageComponent {
         this.month = month;
         this.year = year;
 
-        this.startTime = this.getStartTime(weekIndex, month, year);
-        this.finishTime = this.getFinishTime(weekIndex, month, year);
+        this.startTime = StaffMemberWeekManagementPageComponent.getStartTime(weekIndex, month, year);
+        this.finishTime = StaffMemberWeekManagementPageComponent.getFinishTime(weekIndex, month, year);
 
         Promise.all([
           this.studentPaymentsHttp.getAllPayments(),
-          this.staffMembersHttp.getAllStaffMembers(),
+          this.studentsHttp.getAllStudents(),
           this.staffMembersActionsHttp.getWeekActions(
             login,
             weekIndex,
             month,
             year
-          )
+          ),
+          this.staffMembersWeeksStatusesHttp.get(login, year, month, weekIndex)
         ]).then(it => {
           const payments = it[0]
             .filter(payment => payment.info.staffMemberLogin === login)
             .filter(payment => this.startTime <= payment.info.time)
             .filter(payment => payment.info.time <= this.finishTime);
 
-          const staffMembers = it[1];
+          this.students = it[1];
+          this.actions = it[2];
+          this.statusType = it[3];
+          this.payments = payments;
 
-          const staffMemberActions = it[2];
+          this.modifyViewsData();
 
-          this.totalData = {
-            payments: payments,
-            actions: staffMemberActions
-          }
-
-          this.salaryData = {
-            actions: staffMemberActions
-          }
-
-          this.paymentsData = {
-            payments: payments,
-            staffMembers: staffMembers,
-          }
+          this.loadingInProgress = false;
         });
       });
     });
   }
 
-  public finishWeek() {
+  public modifyWeekStatus(statusType: StaffMemberWeekStatusType) {
     this.staffMembersWeeksStatusesHttp.set(
       {
         id: {
@@ -107,12 +107,51 @@ export class StaffMemberWeekManagementPageComponent {
           month: this.month,
           year: this.year
         },
-        type: 'CLOSED'
+        type: statusType
       }
-    );
+    ).then(() => {
+      this.statusType = statusType;
+
+      this.modifyViewsData();
+    });
   }
 
-  private getStartTime(weekIndex: number, month: Month, year: number): number {
+  public processPayment(payment: ExistingStudentPayment) {
+    this.payments = this.payments.map(it => {
+      if (it.id === payment.id) {
+        return payment;
+      } else {
+        return it;
+      }
+    });
+
+    this.modifyViewsData();
+  }
+
+  public deletePayment(id: number) {
+    this.payments = this.payments.filter(it => it.id !== id);
+
+    this.modifyViewsData();
+  }
+
+  private modifyViewsData() {
+    this.totalData = {
+      actions: this.actions,
+      payments: this.payments,
+      statusType: this.statusType
+    };
+
+    this.actionsViewData = {
+      actions: this.actions
+    }
+
+    this.paymentsData = {
+      payments: this.payments,
+      students: this.students,
+    };
+  }
+
+  private static getStartTime(weekIndex: number, month: Month, year: number): number {
     let dateOfMonth = 1;
 
     for (let i = 0; i < weekIndex; i++) {
@@ -132,7 +171,7 @@ export class StaffMemberWeekManagementPageComponent {
     ).getTime();
   }
 
-  private getFinishTime(weekIndex: number, month: Month, year: number): number {
+  private static getFinishTime(weekIndex: number, month: Month, year: number): number {
     let dateOfMonth = 1;
 
     for (let i = 0; i < weekIndex; i++) {

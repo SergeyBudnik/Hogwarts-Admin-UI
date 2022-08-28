@@ -1,0 +1,50 @@
+<div class="app-card-page-row-with-actions">
+  <div class="payment">
+    <div class="payment-date-column">
+      <div class="app-card-page-text">
+        {{data.payment.info.time | date: 'dd.MM.yyyy HH:mm'}}
+      </div>
+    </div>
+
+    <div class="payment-date-column">
+      <div class="app-card-page-text">
+        {{data.payment.info.amount}}Р
+      </div>
+    </div>
+
+    <div *ngIf="data.mode === 'STUDENT'" class="payment-staff-member-column">
+      <div class="app-card-page-link" (click)="navigateToStaffMember()">
+        {{getStaffMember().person.name}}
+      </div>
+    </div>
+
+    <div *ngIf="data.mode === 'STAFF_MEMBER'" class="payment-student-column">
+      <div class="app-card-page-link" (click)="navigateToStudent()">
+        {{getStudent().person.name}}
+      </div>
+    </div>
+
+    <div class="payment-actions-column">
+      <i
+        *ngIf="data.payment.processed"
+        class="fa fa-check payment-action-processed"
+        aria-hidden="true"
+        (click)="processPayment(false)">
+      </i>
+
+      <i
+        *ngIf="!data.payment.processed"
+        class="fa fa-clock-o payment-action-unprocessed"
+        aria-hidden="true"
+        (click)="processPayment(true)">
+      </i>
+
+      <i
+        class="fa fa-trash-o payment-action-delete"
+        aria-hidden="true"
+        (click)="deletePayment()">
+      </i>
+
+    </div>
+  </div>
+</div>
