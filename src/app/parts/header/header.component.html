@@ -1,56 +1,46 @@
 <div class="app-header">
-  <div class="app-header-title-section">
-    <span>Hogwarts Admin v2.7.0</span>
+  <div class="app-header-title">
+    Hogwarts Admin v2.7.0
   </div>
 
-  <div class="app-header-tabs-section">
-    <div (click)="navigationService.students().list().go()"
-         [class.app-header-tabs-section-element-active]="activeSection === 'STUDENTS'"
-         [class.app-header-tabs-section-element-inactive]="activeSection !== 'STUDENTS'">
+  <div class="app-header-items">
+    <app-header-item
+      [icon]="'fa-user'"
+      [text]="'Студенты'"
+      [active]="activeSection === 'STUDENTS'"
+      (click)="navigationService.students().list().go()">
+    </app-header-item>
 
-      <i class="fa fa-user menu-element-icon" aria-hidden="true"></i>
+    <app-header-item
+      [icon]="'fa-users'"
+      [text]="'Группы'"
+      [active]="activeSection === 'GROUPS'"
+      (click)="navigationService.groups().list().go()">
+    </app-header-item>
 
-      Студенты
-    </div>
+    <app-header-item
+      [icon]="'fa-graduation-cap'"
+      [text]="'Сотрудники'"
+      [active]="activeSection === 'STAFF_MEMBERS'"
+      (click)="navigationService.staffMembers().list().go()">
+    </app-header-item>
 
-    <div (click)="navigationService.groups().list().go()"
-         [class.app-header-tabs-section-element-active]="activeSection === 'GROUPS'"
-         [class.app-header-tabs-section-element-inactive]="activeSection !== 'GROUPS'">
+    <app-header-item
+      [icon]="'fa-building'"
+      [text]="'Кабинеты'"
+      [active]="activeSection === 'CABINETS'"
+      (click)="navigationService.cabinets().list().go()">
+    </app-header-item>
 
-      <i class="fa fa-users menu-element-icon" aria-hidden="true"></i>
-
-      Группы
-    </div>
-
-    <div (click)="navigationService.staffMembers().list().go()"
-         [class.app-header-tabs-section-element-active]="activeSection === 'STAFF_MEMBERS'"
-         [class.app-header-tabs-section-element-inactive]="activeSection !== 'STAFF_MEMBERS'">
-
-      <i class="fa fa-graduation-cap menu-element-icon" aria-hidden="true"></i>
-
-      Сотрудники
-    </div>
-
-    <div (click)="navigationService.cabinets().list().go()"
-         [class.app-header-tabs-section-element-active]="activeSection === 'CABINETS'"
-         [class.app-header-tabs-section-element-inactive]="activeSection !== 'CABINETS'">
-
-      <i class="fa fa-building menu-element-icon" aria-hidden="true"></i>
-
-      Кабинеты
-    </div>
-
-    <div (click)="navigationService.newStudents().list().go()"
-         [class.app-header-tabs-section-element-active]="activeSection === 'NEW_STUDENTS'"
-         [class.app-header-tabs-section-element-inactive]="activeSection !== 'NEW_STUDENTS'">
-
-      <i class="fa fa-building menu-element-icon" aria-hidden="true"></i>
-
-      Заявки
-    </div>
+    <app-header-item
+      [icon]="'fa-users'"
+      [text]="'Заявки'"
+      [active]="activeSection === 'NEW_STUDENTS'"
+      (click)="navigationService.newStudents().list().go()">
+    </app-header-item>
   </div>
 
-  <div class="app-header-actions-section">
+  <div class="app-header-actions">
     <button class="app-button-secondary pull-right" (click)="logOff()">Выйти</button>
   </div>
 </div>
