@@ -1,6 +1,6 @@
-import {ExistingStudentPayment, StaffMember} from '../../../../../data';
+import {ExistingStudentPayment, Student} from '../../../../../data';
 
 export type StaffMemberWeekManagementPaymentsData = {
-  staffMembers: Array<StaffMember>, // todo: drop
+  students: Array<Student>,
   payments: Array<ExistingStudentPayment>
 }

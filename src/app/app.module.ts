@@ -151,7 +151,7 @@ const appRoutes: Routes = [
 
     Pages.StaffMemberWeekManagementPageComponent,
       Pages.StaffMemberWeekManagementPaymentsViewComponent,
-      Pages.StaffMemberWeekManagementSalaryViewComponent,
+      Pages.StaffMemberWeekManagementActionsViewComponent,
       Pages.StaffMemberWeekManagementSalaryDayViewComponent,
       Pages.StaffMemberWeekManagementSalaryDayActionViewComponent,
       Pages.StaffMemberWeekManagementTotalViewComponent,
@@ -178,6 +178,7 @@ const appRoutes: Routes = [
 
     Parts.MenuItemPartComponent,
     Parts.PersonContactsView,
+    Parts.StudentPaymentView,
 
     /**
      * Controls

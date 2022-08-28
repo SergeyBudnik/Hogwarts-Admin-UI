@@ -1,7 +1,7 @@
 export * from './payments';
 
-export * from './salary';
-export * from './salary-day';
-export * from './salary-day-action';
+export * from './actions';
+export * from './actions-day';
+export * from './actions-day-action';
 
 export * from './total';

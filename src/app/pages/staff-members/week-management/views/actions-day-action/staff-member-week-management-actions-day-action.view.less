@@ -1,6 +1,6 @@
 @import "~styles/index";
 
-.app-staff-member-week-management-salary-day-action {
+.day-action {
   display: flex;
   flex-direction: row;
 
@@ -13,7 +13,7 @@
   border-radius: 3px;
 }
 
-.app-staff-member-week-management-salary-day-action-time {
+.day-action-time-column {
   .app-font-regular;
 
   width: 30%;
@@ -22,7 +22,7 @@
   font-size: 14px;
 }
 
-.app-staff-member-week-management-salary-day-action-type {
+.day-action-type-column {
   .app-font-regular;
 
   width: 30%;
@@ -31,7 +31,7 @@
   font-size: 14px;
 }
 
-.app-staff-member-week-management-salary-day-action-price {
+.day-action-price-column {
   .app-font-bold;
 
   width: 30%;
@@ -40,26 +40,34 @@
   font-size: 14px;
 }
 
-.app-staff-member-week-management-salary-day-action-status {
+.day-action-status-column {
   width: 10%;
 }
 
-.app-staff-member-week-management-salary-day-action-status-finished {
+.day-action-status {
   line-height: 14px;
+}
+
+.day-action-status-finished {
+  .day-action-status;
+
   color: @color-fill_text_basic_positive;
 }
 
-.app-staff-member-week-management-salary-day-action-status-canceled {
-  line-height: 14px;
+.day-action-status-canceled {
+  .day-action-status;
+
   color: @color-fill_text_basic_warning;
 }
 
-.app-staff-member-week-management-salary-day-action-status-not-filled {
-  line-height: 14px;
+.day-action-status-not-filled {
+  .day-action-status;
+
   color: @color-fill_text_basic_negative;
 }
 
-.app-staff-member-week-management-salary-day-action-status-future {
-  line-height: 14px;
+.day-action-status-future {
+  .day-action-status;
+
   color: @color-fill_text_basic_light;
 }

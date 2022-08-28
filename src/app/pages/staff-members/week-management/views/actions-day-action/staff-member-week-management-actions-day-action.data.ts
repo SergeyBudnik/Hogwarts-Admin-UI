@@ -1,5 +1,5 @@
 import {StaffMemberAction} from '../../../../../data';
 
-export type StaffMemberWeekManagementSalaryDayActionData = {
+export type StaffMemberWeekManagementActionsDayActionData = {
   action: StaffMemberAction
 }

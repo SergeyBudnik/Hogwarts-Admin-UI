@@ -53,6 +53,12 @@ export class StaffMembersWeekStatusesHttp {
     });
   }
 
+  public get(staffMemberLogin: string, year: number, month: Month, weekIndex: number): Promise<StaffMemberWeekStatusType> {
+    return this.http.get<StaffMemberWeekStatusType>(
+      `${this.root}/${staffMemberLogin}/${year}/${month}/${weekIndex}`
+    ).toPromise();
+  }
+
   public set(staffMemberWeekStatus: StaffMemberWeekStatus): Promise<void> {
     return this.http.post(`${this.root}/`, staffMemberWeekStatus).toPromise().then(() => {});
   }
