@@ -11,9 +11,7 @@
   background: @color-fill_basic_subtle;
 }
 
-/* Title */
-
-.app-header-title-section {
+.app-header-title {
   .app-font-bold;
 
   width: 15%;
@@ -21,9 +19,7 @@
   font-size: @font-normal;
 }
 
-/* Tabs */
-
-.app-header-tabs-section {
+.app-header-items {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -31,57 +27,6 @@
   width: 70%;
 }
 
-.app-header-tabs-section-element {
-  .app-font-regular;
-
-  height: @header-height;
-  line-height: @header-height;
-  padding: 0 @app-size-4;
-  font-size: @font-normal;
-}
-
-.app-header-tabs-section-element-active {
-  .app-header-tabs-section-element;
-
-  color: @color-fill_text_inverse_accent;
-  border-bottom: 2px solid @color-fill_text_inverse_accent;
-}
-
-.app-header-tabs-section-element-inactive {
-  .app-header-tabs-section-element;
-
-  color: @color-fill_text_basic;
-}
-
-.app-header-tabs-section-element-inactive:hover {
-  cursor: pointer;
-  opacity: 0.7;
-}
-
-/* Actions */
-
-.app-header-actions-section {
+.app-header-actions {
   width: 15%;
-}
-
-.header-login-icon {
-  color: @color-fill_text_inverse;
-  line-height: 50px;
-  margin-right: 10px;
-}
-
-.header-login {
-  color: @color-fill_text_inverse;
-  margin-right: 20px;
-}
-
-.menu-element-inactive:hover {
-  cursor: pointer;
-  opacity: 0.7;
-}
-
-.menu-element-icon {
-  width: 20px;
-  margin-right: 10px;
-  text-align: center;
 }

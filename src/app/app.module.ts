@@ -39,6 +39,7 @@ import {StudentStatusComponent} from './parts/student/student-status/student-sta
 import {GroupIconComponent} from './parts/group/group-icon/group-icon.component';
 import {WeekSelectorComponent} from './parts/week-selector/week-selector.component';
 import {StudentCardManagementCalendarMonthView} from './pages';
+import {HeaderItemView} from './parts/header/views/item/header-item.view';
 
 const appRoutes: Routes = [
   { path: 'login', component: Pages.LoginPageComponent },
@@ -79,6 +80,7 @@ const appRoutes: Routes = [
     AppComponent,
 
     HeaderComponent,
+    HeaderItemView,
     TimetableComponent,
     FieldValidationSignComponent,
 
