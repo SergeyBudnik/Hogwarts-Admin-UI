@@ -3,29 +3,10 @@
     {{monthName}}
   </div>
 
-  <div
-    class="app-staff-member-card-management-month-week"
-    *ngFor="let week of weeks; let weekIndex = index"
-    (click)="goToWeekManagement(weekIndex)">
-
-    <div class="app-staff-member-card-management-month-week-dates">
-      {{week.start}} - {{week.finish}}
-    </div>
-
-    <div class="app-staff-member-card-management-month-week-status">
-      <span
-        class="app-staff-member-card-management-month-week-status-closed-icon"
-        *ngIf="getWeekStatusType(weekIndex) === 'CLOSED'">
-
-        <i class="fa fa-check-circle" aria-hidden="true"></i>
-      </span>
-
-      <span
-        class="app-staff-member-card-management-month-week-status-opened-icon"
-        *ngIf="getWeekStatusType(weekIndex) === 'OPENED'">
-
-        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-      </span>
-    </div>
-  </div>
+  <app-staff-member-management-week-view
+    class="app-staff-member-card-management-month-week-container"
+    *ngFor="let week of weeks"
+    [data]="week"
+    (click)="goToWeekManagement(week.index)">
+  </app-staff-member-management-week-view>
 </div>

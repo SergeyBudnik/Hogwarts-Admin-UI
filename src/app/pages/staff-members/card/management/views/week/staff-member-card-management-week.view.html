@@ -1,0 +1,22 @@
+<div class="app-staff-member-card-management-week">
+
+  <div class="app-staff-member-card-management-week-dates">
+    {{getDatesString()}}
+  </div>
+
+  <div class="app-staff-member-card-management-week-status">
+    <span
+      [class.app-staff-member-card-management-week-status-closed-icon]="data.statusType === 'CLOSED'"
+      [class.app-staff-member-card-management-week-status-opened-icon]="data.statusType === 'OPENED'"
+      [class.app-staff-member-card-management-week-status-future-icon]="data.statusType === 'FUTURE'">
+
+      <i
+        class="fa"
+        aria-hidden="true"
+        [class.fa-check-circle]="data.statusType === 'CLOSED'"
+        [class.fa-exclamation-circle]="data.statusType === 'OPENED'"
+        [class.fa-clock-o]="data.statusType === 'FUTURE'">
+      </i>
+    </span>
+  </div>
+</div>

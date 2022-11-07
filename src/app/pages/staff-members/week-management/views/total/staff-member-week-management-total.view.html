@@ -4,7 +4,7 @@
 
 <div class="total-status">
   <div class="total-status-button-column">
-    <button *ngIf="statusType === 'OPENED'" class="app-button-primary" (click)="closeWeek()">
+    <button *ngIf="statusType !== 'CLOSED'" class="app-button-primary" (click)="closeWeek()">
       Закрыть неделю
     </button>
 
@@ -24,7 +24,7 @@
     <ng-container *ngIf="statusType === 'CLOSED'">
       Неделя закрыта, но есть проблемы
     </ng-container>
-    <ng-container *ngIf="statusType === 'OPENED'">
+    <ng-container *ngIf="statusType !== 'CLOSED'">
       Есть проблемы, невозможно закрыть неделю
     </ng-container>
   </div>

@@ -42,15 +42,15 @@ export class StudentCardManagementCalendarView {
 
   private getMonthsInfo(): Array<StudentCardManagementMonthAndYear> {
     return [
-      { month: 'SEP', year: 2021 },
-      { month: 'OCT', year: 2021 },
-      { month: 'NOV', year: 2021 },
-      { month: 'DEC', year: 2021 },
-      { month: 'JAN', year: 2022 },
-      { month: 'FEB', year: 2022 },
-      { month: 'MAR', year: 2022 },
-      { month: 'APR', year: 2022 },
-      { month: 'MAY', year: 2022 }
+      { month: 'SEP', year: 2022 },
+      { month: 'OCT', year: 2022 },
+      { month: 'NOV', year: 2022 },
+      { month: 'DEC', year: 2022 },
+      { month: 'JAN', year: 2023 },
+      { month: 'FEB', year: 2023 },
+      { month: 'MAR', year: 2023 },
+      { month: 'APR', year: 2023 },
+      { month: 'MAY', year: 2023 }
     ]
   }
 
