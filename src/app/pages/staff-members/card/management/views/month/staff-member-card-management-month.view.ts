@@ -2,10 +2,9 @@ import {Component, Input} from '@angular/core';
 import {StaffMemberCardManagementMonthViewData} from './staff-member-card-management-month.view.data';
 import {NavigationService, TranslationService} from '../../../../../../service';
 import {StaffMemberCardManagementWeekViewData} from '../week/staff-member-card-management-week.view.data';
-import {Month} from '../../../../../../data';
+import {Month, StaffMemberWeekStatusType} from '../../../../../../data';
 import {DatesUtils} from '../../../../../../utils/dates-utils';
 import {DatesDayUtils} from '../../../../../../utils/dates-day-utils';
-import {StaffMemberWeekStatus, StaffMemberWeekStatusType} from '../../../../../../data/staff-member-week-status';
 
 @Component({
   selector: 'app-staff-member-management-month-view',
@@ -25,22 +24,12 @@ export class StaffMemberCardManagementMonthViewComponent {
     private translationService: TranslationService
   ) {}
 
-  @Input("data") public set setData(data: StaffMemberCardManagementMonthViewData) {
+  @Input('data') public set setData(data: StaffMemberCardManagementMonthViewData) {
     this.data = data;
 
     this.monthName = this.getMonthName(data);
-
-    this.weeks = this.getWeeks(data.month, data.year);
-
     this.weeksStatuses = data.weeksStatuses;
-  }
-
-  public getWeekStatusType(weekIndex: number): StaffMemberWeekStatusType {
-    if (this.weeksStatuses.length > weekIndex) {
-      return this.weeksStatuses[weekIndex];
-    } else {
-      return 'OPENED';
-    }
+    this.weeks = this.getWeeks(data.month, data.year);
   }
 
   public goToWeekManagement(weekIndex: number) {
@@ -61,24 +50,37 @@ export class StaffMemberCardManagementMonthViewComponent {
     const monthLength = DatesUtils.monthLength(year, month);
 
     let i = 1;
+    let index = 0;
 
     while (i <= monthLength) {
       const weekLength = this.getWeekLength(i, month, year);
 
       const weekStart = i;
-      const weekFinish = monthLength < i + weekLength ? monthLength : i + weekLength;
+      const weekFinish = monthLength < i + weekLength ? monthLength : i + weekLength - 1;
+      const statusType = this.getWeekStatusType(index);
 
       res.push(
         {
           start: weekStart,
-          finish: weekFinish
+          finish: weekFinish,
+          index: index,
+          statusType: statusType
         }
       );
 
       i += weekLength;
+      index++;
     }
 
     return res;
+  }
+
+  private getWeekStatusType(weekIndex: number): StaffMemberWeekStatusType {
+    if (this.weeksStatuses.length > weekIndex) {
+      return this.weeksStatuses[weekIndex];
+    } else {
+      return 'OPENED';
+    }
   }
 
   private getWeekLength(weekStartDate: number, month: Month, year: number): number {

@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
@@ -148,6 +148,7 @@ const appRoutes: Routes = [
 
     Pages.StaffMemberCardManagementPageComponent,
       Pages.StaffMemberCardManagementMonthViewComponent,
+      Pages.StaffMemberCardManagementWeekViewComponent,
 
     Pages.StaffMemberCardMenuComponent,
 
