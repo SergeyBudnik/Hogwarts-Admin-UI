@@ -22,6 +22,17 @@
           (onChange)="newStudentPayment.info.staffMemberLogin = $event">
         </app-select-staff-member-control>
       </app-form-input-control>
+
+      <br>
+
+      <app-form-input-control
+        [label]="'Дата и время оплаты'"
+        [valid]="true">
+        <app-date-control
+          [editable]="true"
+          (onChange)="newStudentPayment.info.time = $event">
+        </app-date-control>
+      </app-form-input-control>
     </div>
 
     <div class="app-modal-footer">
