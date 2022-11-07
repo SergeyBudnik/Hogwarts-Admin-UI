@@ -1,0 +1,16 @@
+<div class="app-card-page-title">
+  Сдали деньги
+</div>
+
+<div *ngIf="paymentsData.length === 0" class="payments-empty">
+  За эту неделю никто не сдал денег :(
+</div>
+
+<div class="payments-container">
+  <app-student-payment
+    *ngFor="let paymentData of paymentsData"
+    [data]="paymentData"
+    (onPaymentDeleted)="onPaymentDeleted(paymentData)"
+    (onPaymentProcessed)="onPaymentProcessed(paymentData, $event)">
+  </app-student-payment>
+</div>

@@ -1,0 +1,41 @@
+<div class="day-action">
+  <div class="day-action-time-column">
+    {{data.action.startTime | date: 'HH:mm'}}
+    -
+    {{data.action.finishTime | date: 'HH:mm'}}
+  </div>
+
+  <div class="day-action-type-column">
+    <ng-container *ngIf="data.action.type === 'ROAD'">
+      Дорога
+    </ng-container>
+    <ng-container *ngIf="data.action.type === 'LESSON_CABINET'">
+      Занятие
+    </ng-container>
+    <ng-container *ngIf="data.action.type === 'LESSON_ONLINE'">
+      Онлайн занятие
+    </ng-container>
+  </div>
+
+  <div class="day-action-price-column">
+    {{data.action.price}} Р
+  </div>
+
+  <div class="day-action-status-column">
+    <span
+      [class.day-action-status-finished]="isStatusFinished()"
+      [class.day-action-status-canceled]="isStatusCanceled()"
+      [class.day-action-status-not-filled]="isStatusNotFilled()"
+      [class.day-action-status-future]="isStatusFuture()">
+
+      <i
+        class="fa"
+        aria-hidden="true"
+        [class.fa-check-circle]="isStatusFinished()"
+        [class.fa-remove]="isStatusCanceled()"
+        [class.fa-exclamation-circle]="isStatusNotFilled()"
+        [class.fa-clock-o]="isStatusFuture()">
+      </i>
+    </span>
+  </div>
+</div>

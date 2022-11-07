@@ -38,6 +38,8 @@ import {ModalTemplateComponent} from './templates/modal/modal.template';
 import {StudentStatusComponent} from './parts/student/student-status/student-status.component';
 import {GroupIconComponent} from './parts/group/group-icon/group-icon.component';
 import {WeekSelectorComponent} from './parts/week-selector/week-selector.component';
+import {StudentCardManagementCalendarMonthView} from './pages';
+import {HeaderItemView} from './parts/header/views/item/header-item.view';
 
 const appRoutes: Routes = [
   { path: 'login', component: Pages.LoginPageComponent },
@@ -48,6 +50,7 @@ const appRoutes: Routes = [
   { path: 'students/:login/status', component: Pages.StudentCardStatusPage },
   { path: 'students/:login/attendance', component: Pages.StudentCardAttendancePage },
   { path: 'students/:login/payment', component: Pages.StudentCardPaymentPage },
+  { path: 'students/:login/management', component: Pages.StudentCardManagementPage },
 
   { path: 'cabinets', component: Pages.CabinetsListPage },
   { path: 'cabinets/:id/information', component: Pages.CabinetInformationPage },
@@ -61,6 +64,8 @@ const appRoutes: Routes = [
   { path: 'staff-members', component: Pages.StaffMembersListPageComponent },
   { path: 'staff-members/:login/information', component: Pages.StaffMemberCardInformationPageComponent },
   { path: 'staff-members/:login/timetable', component: Pages.StaffMemberCardTimetablePageComponent },
+  { path: 'staff-members/:login/management', component: Pages.StaffMemberCardManagementPageComponent },
+  { path: 'staff-members/:login/management/:year/:month/:weekIndex', component: Pages.StaffMemberWeekManagementPageComponent },
 
   { path: 'new-students', component: Pages.NewStudentsListPage },
   { path: 'new-students/:new', component: Pages.NewStudentCardNewPage },
@@ -75,6 +80,7 @@ const appRoutes: Routes = [
     AppComponent,
 
     HeaderComponent,
+    HeaderItemView,
     TimetableComponent,
     FieldValidationSignComponent,
 
@@ -85,10 +91,29 @@ const appRoutes: Routes = [
      */
 
     Pages.StudentCardNewPage,
-    Pages.StudentCardInformationPage, Pages.StudentCardInformationGroupRowView, Pages.StudentCardInformationAssignGroupPopupView,
-    Pages.StudentCardStatusPage, Pages.StudentCardStatusChangePopupView,
-    Pages.StudentCardAttendancePage, Pages.StudentCardAttendanceRowView,
-    Pages.StudentCardPaymentPage, Pages.StudentCardPaymentRowView, Pages.StudentCardPaymentAddPopupView,
+
+    Pages.StudentCardInformationPage,
+    Pages.StudentCardInformationGroupRowView,
+    Pages.StudentCardInformationAssignGroupPopupView,
+
+    Pages.StudentCardStatusPage,
+    Pages.StudentCardStatusChangePopupView,
+
+    Pages.StudentCardAttendancePage,
+    Pages.StudentCardAttendanceRowView,
+
+    Pages.StudentCardPaymentPage,
+    Pages.StudentCardPaymentRowView,
+    Pages.StudentCardPaymentAddPopupView,
+
+    Pages.StudentCardManagementPage,
+    Pages.StudentCardManagementAddPaymentView,
+    Pages.StudentCardManagementCalendarView,
+    Pages.StudentCardManagementCalendarDayView,
+    Pages.StudentCardManagementCalendarMonthView,
+    Pages.StudentCardManagementInfoView,
+    Pages.StudentCardManagementModifyAttendanceView,
+
     Pages.StudentMenuComponent,
     Pages.StudentsListPage,
 
@@ -116,9 +141,22 @@ const appRoutes: Routes = [
      */
 
     Pages.StaffMembersListPageComponent,
+
     Pages.StaffMemberCardInformationPageComponent,
+
     Pages.StaffMemberCardTimetablePageComponent,
+
+    Pages.StaffMemberCardManagementPageComponent,
+      Pages.StaffMemberCardManagementMonthViewComponent,
+
     Pages.StaffMemberCardMenuComponent,
+
+    Pages.StaffMemberWeekManagementPageComponent,
+      Pages.StaffMemberWeekManagementPaymentsViewComponent,
+      Pages.StaffMemberWeekManagementActionsViewComponent,
+      Pages.StaffMemberWeekManagementSalaryDayViewComponent,
+      Pages.StaffMemberWeekManagementSalaryDayActionViewComponent,
+      Pages.StaffMemberWeekManagementTotalViewComponent,
 
     /**
      * Pages: New student
@@ -142,6 +180,7 @@ const appRoutes: Routes = [
 
     Parts.MenuItemPartComponent,
     Parts.PersonContactsView,
+    Parts.StudentPaymentView,
 
     /**
      * Controls
@@ -173,7 +212,7 @@ const appRoutes: Routes = [
     Controls.FormTextControl,
     Controls.FormDateAndTimeControl,
 
-    WeekSelectorComponent
+    WeekSelectorComponent, StudentCardManagementCalendarMonthView
   ],
   imports: [
     TagInputModule,
@@ -204,6 +243,7 @@ const appRoutes: Routes = [
       useValue: {}
     },
 
+    Services.LessonsInstanceService,
     Services.NavigationService,
     Services.TranslationService,
     Services.LoginService,
@@ -220,7 +260,9 @@ const appRoutes: Routes = [
     Https.StudentOnBoardingHttp,
     Https.StudentPaymentHttp,
     Https.StudentStatusHttp,
-    Https.StaffMembersHttp
+    Https.StaffMembersHttp,
+    Https.StaffMembersActionsHttp,
+    Https.StaffMembersWeekStatusesHttp
   ],
   bootstrap: [
     AppComponent

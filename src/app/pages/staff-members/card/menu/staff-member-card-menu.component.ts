@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {NavigationService} from '../../../../service';
 
-type Tab = 'INFORMATION' | 'TIMETABLE';
+type Tab = 'INFORMATION' | 'TIMETABLE' | 'MANAGEMENT';
 
 @Component({
   selector: '[app-staff-member-menu]',

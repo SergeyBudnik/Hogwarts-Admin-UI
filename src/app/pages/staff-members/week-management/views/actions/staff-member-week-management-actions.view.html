@@ -1,0 +1,28 @@
+<div class="app-card-page-title">
+  Действия
+</div>
+
+<div class="actions-day-group">
+  <div
+    *ngFor="let daysGroup of days"
+    class="actions-day-subgroup">
+
+    <app-staff-member-week-management-actions-day-view
+      *ngIf="daysGroup.length >= 1"
+      [data]="getDayData(daysGroup[0])"
+      class="actions-day actions-day-margin">
+    </app-staff-member-week-management-actions-day-view>
+
+    <app-staff-member-week-management-actions-day-view
+      *ngIf="daysGroup.length >= 2"
+      [data]="getDayData(daysGroup[1])"
+      class="actions-day actions-day-margin">
+    </app-staff-member-week-management-actions-day-view>
+
+    <app-staff-member-week-management-actions-day-view
+      *ngIf="daysGroup.length >= 3"
+      [data]="getDayData(daysGroup[2])"
+      class="actions-day">
+    </app-staff-member-week-management-actions-day-view>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+@import "~styles/index";
+
+.total-status {
+  display: flex;
+  flex-direction: row;
+
+  margin-top: 12px;
+}
+
+.total-status-button-column {
+  margin-right: 12px;
+}
+
+.total-status-info-column {
+  .app-font-regular;
+
+  height: 36px;
+  padding: 0 12px;
+
+  background: @color-alt_basic_light;
+
+  border-radius: 3px;
+
+  line-height: 36px;
+
+  font-size: 14px;
+}
+
+.total-status-info-column-ok {
+  .total-status-info-column;
+
+  color: @color-fill_text_basic_positive;
+}
+
+.total-status-info-column-problem {
+  .total-status-info-column;
+
+  color: @color-fill_text_basic_negative;
+}
+
+.total-items {
+  display: flex; flex-direction: row; width: 100%;
+}
+
+.total-item {
+  width: calc(~'33.333% - 8px');
+}
+
+.total-item-margin {
+  margin-right: 12px;
+}

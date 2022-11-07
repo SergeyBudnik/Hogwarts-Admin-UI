@@ -1,0 +1,36 @@
+<div class="app-card-page-title">
+  Информация
+</div>
+
+<br>
+
+<div style="display: flex; flex-direction: row">
+  <app-form-input-control style="width: 30%; margin-right: 5%"
+    [label]="'Текущий долг'" [valid]="true">
+    <app-text-control
+      [placeholder]="''"
+      [value]="debtActual + ' Р'"
+      [editable]="false">
+    </app-text-control>
+  </app-form-input-control>
+
+  <app-form-input-control style="width: 30%; margin-right: 5%"
+    [label]="'Долг на конец месяца'"
+    [valid]="true">
+    <app-text-control
+      [placeholder]="''"
+      [value]="'В разработке'"
+      [editable]="false">
+    </app-text-control>
+  </app-form-input-control>
+
+  <app-form-input-control style="width: 30%;"
+    [label]="'Не напоминать до:'"
+    [valid]="true">
+    <app-date-control
+      [value]="0">
+    </app-date-control>
+  </app-form-input-control>
+</div>
+
+<br>

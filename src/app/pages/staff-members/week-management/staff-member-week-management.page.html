@@ -1,0 +1,33 @@
+<div class="app-card-page">
+  <app-header></app-header>
+
+  <div class="app-card-page-elements">
+    <div class="app-card-page-left-menu"></div>
+
+    <div class="app-card-page-content-scrollable">
+      <ng-container *ngIf="!loadingInProgress">
+        <app-staff-member-week-management-total-view
+          [data]="totalData"
+          (onWeekClose)="modifyWeekStatus('CLOSED')"
+          (onWeekReopen)="modifyWeekStatus('OPENED')">
+        </app-staff-member-week-management-total-view>
+
+        <br>
+
+        <app-staff-member-week-management-actions-view
+          [data]="actionsViewData">
+        </app-staff-member-week-management-actions-view>
+
+        <br>
+
+        <app-staff-member-week-management-payments-view
+          [data]="paymentsData"
+          (onPaymentProcessed)="processPayment($event)"
+          (onPaymentDeleted)="deletePayment($event)">
+        </app-staff-member-week-management-payments-view>
+      </ng-container>
+    </div>
+
+    <div class="app-card-page-right-menu"></div>
+  </div>
+</div>

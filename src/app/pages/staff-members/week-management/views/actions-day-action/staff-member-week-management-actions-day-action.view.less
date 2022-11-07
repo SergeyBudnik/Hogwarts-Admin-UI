@@ -1,0 +1,73 @@
+@import "~styles/index";
+
+.day-action {
+  display: flex;
+  flex-direction: row;
+
+  margin-top: 3px;
+
+  padding: 6px;
+
+  background: @color-alt_basic_base;
+
+  border-radius: 3px;
+}
+
+.day-action-time-column {
+  .app-font-regular;
+
+  width: 30%;
+
+  color: @color-fill_text_basic;
+  font-size: 14px;
+}
+
+.day-action-type-column {
+  .app-font-regular;
+
+  width: 30%;
+
+  color: @color-fill_text_basic_light;
+  font-size: 14px;
+}
+
+.day-action-price-column {
+  .app-font-bold;
+
+  width: 30%;
+
+  color: @color-fill_text_basic;
+  font-size: 14px;
+}
+
+.day-action-status-column {
+  width: 10%;
+}
+
+.day-action-status {
+  line-height: 14px;
+}
+
+.day-action-status-finished {
+  .day-action-status;
+
+  color: @color-fill_text_basic_positive;
+}
+
+.day-action-status-canceled {
+  .day-action-status;
+
+  color: @color-fill_text_basic_warning;
+}
+
+.day-action-status-not-filled {
+  .day-action-status;
+
+  color: @color-fill_text_basic_negative;
+}
+
+.day-action-status-future {
+  .day-action-status;
+
+  color: @color-fill_text_basic_light;
+}

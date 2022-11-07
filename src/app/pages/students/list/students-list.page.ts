@@ -60,7 +60,7 @@ export class StudentsListPage {
   }
 
   public getStudentsActiveGroups(student: Student): Array<StudentGroup> {
-    return this.studentGroupsService.getStudentActiveGroups(student);
+    return this.studentGroupsService.getActiveStudentGroups(student, new Date().getTime());
   }
 
   public getGroup(groupId: number): Group {
@@ -111,8 +111,10 @@ export class StudentsListPage {
       .filter(it => this.managerLoginFilter === null || it.managerLogin === this.managerLoginFilter)
       .filter(it => !this.statusFilter || this.getStatus(it.login) === this.statusFilter)
       .sort((s1, s2) => {
-        const s1ActiveGroups = this.studentGroupsService.getStudentActiveGroups(s1);
-        const s2ActiveGroups = this.studentGroupsService.getStudentActiveGroups(s2);
+        const currentTime = new Date().getTime();
+
+        const s1ActiveGroups = this.studentGroupsService.getActiveStudentGroups(s1, currentTime);
+        const s2ActiveGroups = this.studentGroupsService.getActiveStudentGroups(s2, currentTime);
 
         if (s1ActiveGroups.length === 0 && s2ActiveGroups.length === 0) {
           return 0;

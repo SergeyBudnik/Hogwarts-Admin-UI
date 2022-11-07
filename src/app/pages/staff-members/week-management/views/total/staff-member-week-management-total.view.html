@@ -1,0 +1,68 @@
+<div class="app-card-page-title">
+  Итог
+</div>
+
+<div class="total-status">
+  <div class="total-status-button-column">
+    <button *ngIf="statusType === 'OPENED'" class="app-button-primary" (click)="closeWeek()">
+      Закрыть неделю
+    </button>
+
+    <button
+      *ngIf="statusType === 'CLOSED'"
+      class="app-button-secondary"
+      (click)="reopenWeek()">
+      Переоткрыть неделю
+    </button>
+  </div>
+
+  <div *ngIf="weekOk && statusType === 'OPENED'" class="total-status-info-column-ok">
+    Все хорошо, можно закрывать неделю
+  </div>
+
+  <div *ngIf="!weekOk" class="total-status-info-column-problem">
+    <ng-container *ngIf="statusType === 'CLOSED'">
+      Неделя закрыта, но есть проблемы
+    </ng-container>
+    <ng-container *ngIf="statusType === 'OPENED'">
+      Есть проблемы, невозможно закрыть неделю
+    </ng-container>
+  </div>
+</div>
+
+<br>
+
+<div class="total-items">
+  <app-form-input-control
+    class="total-item total-item-margin"
+    [label]="'Зарплата'"
+    [valid]="true">
+    <app-text-control
+      [value]="'' + totalSalary"
+      [placeholder]="''"
+      [editable]="false">
+    </app-text-control>
+  </app-form-input-control>
+
+  <app-form-input-control
+    class="total-item total-item-margin"
+    [label]="'Сдали денег'"
+    [valid]="true">
+    <app-text-control
+      [value]="'' + totalPayments"
+      [placeholder]="''"
+      [editable]="false">
+    </app-text-control>
+  </app-form-input-control>
+
+  <app-form-input-control
+    class="total-item"
+    [label]="'Итог'"
+    [valid]="true">
+    <app-text-control
+      [value]="'' + total"
+      [placeholder]="''"
+      [editable]="false">
+    </app-text-control>
+  </app-form-input-control>
+</div>

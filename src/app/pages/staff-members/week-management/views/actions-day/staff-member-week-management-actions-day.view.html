@@ -1,0 +1,16 @@
+<div class="day-actions">
+  <div class="day-actions-name">
+    {{dayName}}
+  </div>
+
+  <div
+    *ngIf="data.actions.length === 0"
+    class="day-actions-empty">
+    В этот день занятий не было
+  </div>
+
+  <app-staff-member-week-management-actions-day-action-view
+    *ngFor="let action of data.actions"
+    [data]="getActionData(action)">
+  </app-staff-member-week-management-actions-day-action-view>
+</div>

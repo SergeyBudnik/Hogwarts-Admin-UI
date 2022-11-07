@@ -43,4 +43,8 @@ export class NavigationStudentService {
   public payment(): NavigationExecutor {
     return new NavigationExecutor(this.router, `students/${this.login}/payment`);
   }
+
+  public management(): NavigationExecutor {
+    return new NavigationExecutor(this.router, `students/${this.login}/management`);
+  }
 }
